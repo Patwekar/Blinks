@@ -1,0 +1,47 @@
+HAVE an abstract game class (abstract class or interface) called Game
+Game class will have 3 methods:
+    - start()
+    - update() //Game implements updatable
+    - end()
+Then each game we design, will extend/implement the game class, forcing 
+them to all have the methods. Each blinks will have the start() update() and end() also
+which will be the same as the game that is passed in the constructor
+
+constructor(Game game){} //Game is polymorphic
+Game 
+
+
+FSM for game:
+States: 
+    -idle 
+    -initialising
+    -playing
+    -win
+    -lose
+    -ended
+
+
+Have each state mapped to a function i.e in an enum
+and everytime we change state, in update
+we do state()
+
+example mappings
+
+enum States{
+"idle" : idleing()
+"initialising" : init()
+"playing" : playing()
+"win" : win()
+"lose" : lose()
+"ended" : end()
+}
+
+
+state : States;
+
+update(){
+    state();
+}
+
+
+
