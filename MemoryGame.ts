@@ -7,7 +7,7 @@ export default class MemoryGame extends Game{
     readonly visiblityTime : number = 5000;
     readonly lossDisplayTime : number = 5000;
     private storedBlinkColor : Color;
-    memoryPath : number[];
+    memoryPath : number[] = [];
 
     constructor(){
         super();
@@ -43,7 +43,9 @@ export default class MemoryGame extends Game{
             let connectedFaces = this.blink.getConnectedFaces();
             let chosenFaceIndex = Math.floor(Math.random()*connectedFaces.length);
             this.blink.gameStarted = true;
-            connectedFaces[chosenFaceIndex].sendMessage({start : "start"});
+            this.memoryPath.push(chosenFaceIndex);
+            connectedFaces[chosenFaceIndex].sendMessage({start : "start", path : Array.from(this.memoryPath)});
+            
             
             setTimeout(function(){
                 this.blink.color = Color.NONE;

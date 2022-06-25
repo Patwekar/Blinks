@@ -99,8 +99,10 @@ export default class Blink implements Updatable{
             }
             case StateNames.STARTBLINK || StateNames.START:{
                 this.pathFace = options['faceID'];
+                let p = (<MemoryGame>this.currentGame).memoryPath = options["path"];
+
                 if(this.currentGame.state.currentState() === StateNames.START){
-                    this._faces[this.pathFace].sendMessage({"path" : [this.pathFace]})
+                    this._faces[this.pathFace].sendMessage({"path" : [...p]});
                     return;
                 }
                 this.currentGame.state.changeState(StateNames.START);
@@ -126,7 +128,6 @@ export default class Blink implements Updatable{
                     (<MemoryGame>this.currentGame).memoryPath = options['path'];
                     return;
                 }
-                options['path'].push(this.pathFace);
                 this._faces[this.pathFace].sendMessage(options);
             }
             
