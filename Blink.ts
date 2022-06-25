@@ -57,7 +57,7 @@ export default class Blink implements Updatable{
     }
 
     sendMessages(index : number, options : Record<string,any>){
-        this._faces[index].sendMessage(options);
+        this._faces[index].sendMessage(Object.assign({},options));
     }
 
     recieveMessages(options : Record<string,any>){

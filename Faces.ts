@@ -26,7 +26,7 @@ export default class Face implements Updatable{
      * @param options contain data to be transfered to the neighboring face
      */
     public sendMessage(options : Record<string,any>) {
-        this.connectedTo.recieveMessage(options);
+        this.connectedTo.recieveMessage(Object.assign({},options));
     }
 
     public recieveMessage(options : Record<string, any>){
